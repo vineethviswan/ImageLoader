@@ -1,2 +1,2 @@
 # ImageLoader
-Refactoring the library stb_image
+Refactoring the stb_image library
