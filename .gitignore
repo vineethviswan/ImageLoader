@@ -1,11 +1,15 @@
 # Prerequisites
 *.d
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
+# Build artifacts
 *.obj
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.lib
+*.exp
+*.log
 
 # Precompiled Headers
 *.gch
@@ -30,3 +34,33 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio files
+*.sdf
+*.opensdf
+*.suo
+*.ncb
+*.user
+*.aps
+*.pch
+*.idb
+*.ipdb
+*.iobj
+*.tlog
+*.VC.db
+
+# IDE-specific directories
+.vs/
+bin/
+obj/
+Debug/
+Release/
+
+# Cache and temporary files
+*.cache
+*.tmp
+
+# Exclude Git metadata and system files
+.git/
+Thumbs.db
+desktop.ini
