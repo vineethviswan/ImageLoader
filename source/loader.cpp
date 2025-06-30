@@ -1,23 +1,20 @@
 
 #define STB_IMAGE_IMPLEMENTATION
+
 #include "stb_image.h"
-#include "config.h"
-
 #include <iostream>
+#include "config.h"
+#include "loader.h"
 
-int main()
+int ImageLoader::LoadImage (const std::string& filename)
 {
-	std::cout << "STB_IMAGE...\n";
-
-    int width, height, channels;
-	std::string image_path = config::GetConfigPath("blue-aesthetic-2560x1080-17495.png");    
-    unsigned char* img = stbi_load(image_path.c_str(), &width, &height, &channels, 0);    
-    if (img == NULL) {
-        printf("Failed to load image\n");
-        return 1;
+    std::string image_path = config::GetConfigPath (filename.c_str ());
+    unsigned char* img = stbi_load (image_path.c_str (), &width, &height, &channels, 0);
+    if (img == nullptr)
+    {
+        std::cerr << "Failed to load image: " << filename << std::endl;
+        return 1; // Error code
     }
-
-    printf("Loaded image with width: %d, height: %d, channels: %d\n", width, height, channels);
-    stbi_image_free(img);
-	
+    stbi_image_free (img);
+    return 0; // Success
 }

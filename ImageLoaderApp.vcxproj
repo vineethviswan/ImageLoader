@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -125,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\config.h" />
+    <ClInclude Include="include\loader.h" />
     <ClInclude Include="include\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +136,10 @@
     <ClCompile Include="source\loader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="testfiles\blue-aesthetic-2560x1080-17495.png" />
+    <Image Include="testfiles\test_bmp_image.bmp" />
+    <Image Include="testfiles\test_gif_image.gif" />
+    <Image Include="testfiles\test_jpg_image.jpg" />
+    <Image Include="testfiles\test_png_image.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

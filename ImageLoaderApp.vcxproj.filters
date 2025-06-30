@@ -21,6 +21,9 @@
     <ClInclude Include="include\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\loader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -32,7 +35,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="testfiles\blue-aesthetic-2560x1080-17495.png">
+    <Image Include="testfiles\test_bmp_image.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="testfiles\test_gif_image.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="testfiles\test_jpg_image.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="testfiles\test_png_image.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

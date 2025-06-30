@@ -1,33 +1,54 @@
-#include "pch.h"
+
+#include "gtest/gtest.h"
+
 #include "config.h"
+#include "test_utils.h"
+
+#include <cstdlib>
+#include <string>
 
 namespace ImageLoaderTests
-{
+{   
     TEST (ConfigTest, ReturnsFilenameIfEnvNotSet) {
-        // Unset the environment variable for this test
-#ifdef _WIN32
-        _putenv_s ("IMAGE_LOADER_ASSETS", "");
-#else
-        unsetenv ("IMAGE_LOADER_ASSETS");
-#endif
-
+        SetAssetsEnv (nullptr);
         std::string result = config::GetConfigPath ("test.png");
         EXPECT_EQ (result, "test.png");
     }
 
     TEST (ConfigTest, ReturnsPathWithEnvSet) {
-        // Set the environment variable
-#ifdef _WIN32
-        _putenv_s ("IMAGE_LOADER_ASSETS", "C:/assets");
-#else
-        setenv ("IMAGE_LOADER_ASSETS", "/assets", 1);
-#endif
-
+        SetAssetsEnv ("C:/assets");
         std::string result = config::GetConfigPath ("test.png");
-#ifdef _WIN32
         EXPECT_EQ (result, "C:/assets/test.png");
-#else
-        EXPECT_EQ (result, "/assets/test.png");
-#endif
     }
-}
+
+    TEST (ConfigTest, HandlesTrailingSlashInEnv) {
+        SetAssetsEnv ("C:/assets/");
+        std::string result = config::GetConfigPath ("test.png");
+        EXPECT_EQ (result, "C:/assets/test.png");
+    }
+
+    TEST (ConfigTest, HandlesLeadingSlashInFilename) {
+        SetAssetsEnv ("C:/assets");
+        std::string result = config::GetConfigPath ("/test.png");
+        EXPECT_EQ (result, "C:/assets/test.png");
+    }
+
+    TEST (ConfigTest, HandlesBothSlashes) {
+        SetAssetsEnv ("C:/assets/");
+        std::string result = config::GetConfigPath ("/test.png");
+        EXPECT_EQ (result, "C:/assets/test.png");
+    }
+
+    TEST (ConfigTest, HandlesEmptyEnv) {
+        SetAssetsEnv ("");
+        std::string result = config::GetConfigPath ("test.png");
+        EXPECT_EQ (result, "test.png");
+    }
+
+    TEST (ConfigTest, HandlesNullFilename) {
+        SetAssetsEnv ("C:/assets");
+        std::string result = config::GetConfigPath (nullptr);
+        EXPECT_EQ (result, "");
+    }
+
+} // namespace ImageLoaderTests
