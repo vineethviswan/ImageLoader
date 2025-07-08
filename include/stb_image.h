@@ -307,7 +307,7 @@ Blazej Dariusz Roszkowski                                     github:Michaelange
 #include <stdio.h>
 #endif // STBI_NO_STDIO
 
-#define STBI_VERSION 1
+constexpr int STBI_VERSION = 1;
 
 enum
 {
@@ -1686,7 +1686,7 @@ static stbi_uc *stbi__hdr_to_ldr(float   *data, int x, int y, int comp)
 #ifndef STBI_NO_JPEG
 
 // huffman decoding acceleration
-#define FAST_BITS   9  // larger handles more cases; smaller stomps less cache
+constexpr int FAST_BITS = 9; // larger handles more cases; smaller stomps less cache
 
 typedef struct
 {
@@ -2662,7 +2662,8 @@ static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
 
 #endif // STBI_NEON
 
-#define STBI__MARKER_none  0xff
+constexpr int STBI__MARKER_none = 0xFF;
+
 // if there's a pending marker from the entropy stream, return that
 // otherwise, fetch from the stream and get a marker. if there's no
 // marker, return 0xff, which is never a valid marker value
@@ -3817,7 +3818,8 @@ static int stbi__jpeg_info(stbi__context *s, int *x, int *y, int *comp)
 #ifndef STBI_NO_ZLIB
 
 // fast-way is faster to check than jpeg huffman, but slow way is slower
-#define STBI__ZFAST_BITS  9 // accelerate all cases in default tables
+constexpr int STBI__ZFAST_BITS = 9; // accelerate all cases in default tables
+
 #define STBI__ZFAST_MASK  ((1 << STBI__ZFAST_BITS) - 1)
 
 // zlib-style huffman encoding
@@ -6719,7 +6721,8 @@ static int stbi__hdr_test(stbi__context* s)
 	return r;
 }
 
-#define STBI__HDR_BUFLEN  1024
+constexpr int STBI__HDR_BUFLEN = 1024; // buffer length for HDR token parsing
+
 static char *stbi__hdr_gettoken(stbi__context *z, char *buffer)
 {
 	int len = 0;
