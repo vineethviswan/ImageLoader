@@ -536,18 +536,17 @@ extern "C" {
 #define stbi_inline __forceinline
 #endif
 
-
 #ifdef _MSC_VER
-typedef unsigned short stbi__uint16;
-typedef   signed short stbi__int16;
-typedef unsigned int   stbi__uint32;
-typedef   signed int   stbi__int32;
+using stbi__uint16 = unsigned short;
+using stbi__int16 = signed short;
+using stbi__uint32 = unsigned int;
+using stbi__int32 = signed int;
 #else
 #include <stdint.h>
-typedef uint16_t stbi__uint16;
-typedef int16_t  stbi__int16;
-typedef uint32_t stbi__uint32;
-typedef int32_t  stbi__int32;
+using stbi__uint16 = uint16_t;
+using stbi__int16 = int16_t;
+using stbi__uint32 = uint32_t;
+using stbi__int32 = int32_t;
 #endif
 
 // should produce compiler error if size is wrong
